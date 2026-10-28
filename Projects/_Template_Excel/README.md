@@ -8,7 +8,8 @@ Excel VBA（VBE）を使うプロジェクトのひな形です。新しいプ�
 ProjectName/
 ├─ README.md          プロジェクトの目的と使い方
 ├─ .gitignore         Gitに登録しないファイルの指定
-├─ VBA/               VBEから書き出したVBAソースを置く
+├─ Source/            VBEから書き出した本番用VBAソースを置く
+├─ Sandbox/           試作・検証用コードを置く（詳細はSandbox/README.md）
 ├─ ProjectName.xlsm   Excelで作成・保存するマクロ有効ブック
 └─ .git/              コピー後に作成するプロジェクト専用Git履歴
 ```
@@ -28,14 +29,22 @@ git init -b main
 
 ## VBAコードの管理
 
-VBAコードの本体はExcelブック（`.xlsm`）内に保存されます。履歴や差分をGitで確認しやすくするため、VBEから標準モジュール、クラス、フォームをエクスポートし、`VBA`以下に保存します。
+VBAコードの本体はExcelブック（`.xlsm`）内に保存されます。履歴や差分をGitで確認しやすくするため、VBEから標準モジュール、クラス、フォームをエクスポートし、`Source`以下に保存します。
 
 ```text
-VBA/
-├─ Modules/   .bas
-├─ Classes/   .cls
-└─ Forms/     .frm と関連ファイル
+Source/
+├─ ブック名/                         VBAソース
+│  ├─ モジュール名.bas
+│  ├─ クラス名.cls
+│  └─ フォーム名.frm と関連する .frx
+└─ .excel-vba-sync-backups/
+   └─ ブック名/                      同期管理用のJSON
+      └─ モジュール名.syncbase.json
 ```
+
+取得時は、同じブック名のフォルダーが `Source/` 直下と `Source/.excel-vba-sync-backups/` 以下にそれぞれ作成されます。VBAソースは種類別の `Modules/`、`Classes/`、`Forms/` には分けず、`Source/ブック名/` に保存します。ファイルの種類は対象ブックと取得方法によって異なり、シートや `ThisWorkbook` のコードが `.bas` として出力される場合もあります。
+
+`.syncbase.json` には、ソースファイル名、コードのSHA-256ハッシュ、取得元、記録日時などが保存されます。VBAコード本体ではなく、JSONだけではコードを復元できません。フォルダー名が `.excel-vba-sync-backups` でも、添付例のJSONをVBAソースのバックアップそのものとして扱わないでください。
 
 エクスポートしたファイルを編集しただけでは、ブック内のVBAコードは変わりません。編集内容をExcelで使うには、VBEへインポートするか、VBE上で編集した後に改めてエクスポートしてください。ブックとエクスポートしたソースの両方を更新して管理します。
 

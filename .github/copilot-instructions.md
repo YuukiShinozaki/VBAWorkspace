@@ -9,6 +9,13 @@
 
 ## Excel and VBA development
 
+### Mandatory operator approval before Excel operations
+
+- Before starting Excel, opening a workbook, running a macro, or applying changes to a live workbook, always ask the operator for explicit approval in clear Japanese and wait for an affirmative reply. This confirmation is required even when the original request asks for the operation; a general request to investigate, fix, or validate is not permission.
+- Make it unmistakable that this is a permission request, not a notice that work is starting. State the exact workbook path, the planned operation, and, when applicable, the module/macro and whether workbook contents will change. For example: 「【許可の確認】Excelを起動して、ブック『<フルパス>』を開いてもよいですか？ 読み取りのみで、マクロの実行や変更・保存は行いません。許可をいただくまで操作しません。」 For execution, ask separately: 「【実行許可の確認】ブック『<フルパス>』のマクロ『<モジュール名.マクロ名>』を実行してもよいですか？ 想定される変更：<変更内容>。許可をいただくまで実行しません。」
+- This rule also applies to tools, scripts, tasks, COM automation, and delegated agents that may automatically launch Excel or open a workbook, including read-only inspection tools. Obtain approval before invoking them, not after Excel has opened. If the behavior is uncertain, inspect offline files/documentation first or ask for approval before proceeding.
+- Approval is limited to the stated workbook and operations. Permission to open/read is not permission to run macros, import code, modify, or save. Ask again before expanding the approved scope. If approval is absent, unclear, or denied, do not proceed; limit work to offline source/documentation and explain any validation limits.
+
 - Treat the target Excel macro-enabled workbook (`.xlsm`/`.xlsb`) as the runtime artifact. Exported `.bas`, `.cls`, and `.frm` files under `Projects/` are source-control copies; editing them alone does not change code inside the workbook.
 - For exported VBA source, follow the target project's README and existing VBA style and structure, and keep changes focused on the requested behavior.
 - Do not import or otherwise apply exported VBA code to a workbook, change workbook contents, or run a macro unless the user explicitly requests that operation. When requested, confirm the exact workbook and component before acting; never substitute a similarly named workbook or module.
