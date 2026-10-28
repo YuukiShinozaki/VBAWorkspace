@@ -1,0 +1,6 @@
+# Project実体は各Project repoで管理する
+Project */
+.tools/UserFormCsvExporter/UserFormCsvExporter.xlam
+
+# サンプルデータはGit管理しない
+SampleDatas/
