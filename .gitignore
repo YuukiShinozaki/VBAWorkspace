@@ -1,5 +1,8 @@
 # Project実体は各Project repoで管理する
 Project */
+
+# UserForm CSV出力用アドインは利用端末ごとに用意するため、Git管理から除外
+# Excelへのアドイン登録は不要（出力スクリプトが実行時のみ読み込む）
 .tools/UserFormCsvExporter/UserFormCsvExporter.xlam
 
 # サンプルデータはGit管理しない

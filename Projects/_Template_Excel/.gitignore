@@ -1,1 +1,6 @@
+# マクロ有効ブックを除外（サブフォルダー内も対象）
 *.xlsm
+
+# プロジェクト直下のCopilot作業記録・引継ぎメモを除外
+/CopilotActivityLog.md
+/CopilotMemory.md

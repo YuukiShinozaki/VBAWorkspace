@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "hooks": {
+    "userPromptSubmitted": [
+      {
+        "type": "command",
+        "powershell": "$d = (Get-Location).Path; while ($d -and -not (Test-Path -LiteralPath (Join-Path $d '.tools\\CopilotActivityHook.ps1'))) { $d = Split-Path -Parent $d }; if ($d) { & (Join-Path $d '.tools\\CopilotActivityHook.ps1') } else { [Console]::Out.WriteLine('{}') }",
+        "cwd": ".",
+        "timeoutSec": 10
+      }
+    ]
+  }
+}

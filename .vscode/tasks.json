@@ -64,6 +64,44 @@
                 "cwd": "${workspaceFolder}"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Copilot: true項目をメモへ抽出",
+            "type": "shell",
+            "command": "powershell.exe",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}\\.tools\\Manage-CopilotMemory.ps1",
+                "-Mode",
+                "Extract",
+                "-WorkspaceRoot",
+                "${workspaceFolder}"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "Copilot: discard項目を確認して完全削除",
+            "type": "shell",
+            "command": "powershell.exe",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}\\.tools\\Manage-CopilotMemory.ps1",
+                "-Mode",
+                "DeleteDiscard",
+                "-WorkspaceRoot",
+                "${workspaceFolder}"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+            "problemMatcher": []
         }
     ],
     "inputs": [
