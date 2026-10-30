@@ -6,4 +6,5 @@ Project */
 .tools/UserFormCsvExporter/UserFormCsvExporter.xlam
 
 # サンプルデータはGit管理しない
-SampleDatas/
+/SampleDatas/*
+!/SampleDatas/.gitkeep
